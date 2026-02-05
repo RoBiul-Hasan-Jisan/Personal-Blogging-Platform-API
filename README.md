@@ -142,11 +142,15 @@ The application will be available at: http://localhost:5000
 ```
 ---
 ## API Documentation
-```bash
-Base URL
 
+### Base URL
+```bash
 http://localhost:5000/api
-Authentication Endpoints
+
+```
+---
+## Authentication Endpoints
+```bash
 Method	Endpoint	Description	Auth Required
 POST	/users/register	Register new user	No
 POST	/users/login	Login user	No
@@ -154,7 +158,9 @@ POST	/users/refresh	Refresh access token	Refresh Token
 GET	/users/profile	Get current user profile	Yes
 PUT	/users/profile	Update user profile	Yes
 GET	/users/{username}	Get public user profile	No
-Post Endpoints
+```
+## Post Endpoints
+```bash
 Method	Endpoint	Description	Auth Required
 GET	/posts/	Get all published posts	No
 GET	/posts/{slug}	Get single post	No
@@ -163,19 +169,28 @@ PUT	/posts/{id}	Update post	Yes (Owner/Admin)
 DELETE	/posts/{id}	Delete post	Yes (Owner/Admin)
 POST	/posts/{id}/like	Like/unlike post	Yes
 GET	/posts/drafts	Get user drafts	Yes
-Comment Endpoints
+```
+---
+## Comment Endpoints
+```bash
 Method	Endpoint	Description	Auth Required
 GET	/comments/post/{post_id}	Get post comments	No
 POST	/comments/	Create comment	Yes
 PUT	/comments/{id}	Update comment	Yes (Owner/Admin)
 DELETE	/comments/{id}	Delete comment	Yes (Owner/Admin)
-Category Endpoints
+```
+---
+## Category Endpoints
+
+```bash
 Method	Endpoint	Description	Auth Required
 GET	/categories/	Get all categories	No
 GET	/categories/{slug}	Get single category	No
 POST	/categories/	Create category	Yes (Admin)
 PUT	/categories/{id}	Update category	Yes (Admin)
 DELETE	/categories/{id}	Delete category	Yes (Admin)
+```
+---
 🔑 Default Admin Account
 On first run, the system creates a default admin account:
 
@@ -273,17 +288,17 @@ Creates admin user
 To use another database (PostgreSQL, MySQL), update config.py:
 
 python
-# PostgreSQL example
+### PostgreSQL example
 SQLALCHEMY_DATABASE_URI = 'postgresql://user:password@localhost/blogging_platform'
 
-# MySQL example
+### MySQL example
 ```bash
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://user:password@localhost/blogging_platform'
  Testing the API
 Using curl
 Register a user:
 
-bash
+
 curl -X POST http://localhost:5000/api/users/register \
   -H "Content-Type: application/json" \
   -d '{
@@ -293,7 +308,7 @@ curl -X POST http://localhost:5000/api/users/register \
   }'
 Login:
 
-bash
+
 curl -X POST http://localhost:5000/api/users/login \
   -H "Content-Type: application/json" \
   -d '{
@@ -302,7 +317,7 @@ curl -X POST http://localhost:5000/api/users/login \
   }'
 Create a post (with JWT):
 
-bash
+
 curl -X POST http://localhost:5000/api/posts/ \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \
@@ -314,7 +329,7 @@ curl -X POST http://localhost:5000/api/posts/ \
   }'
 Get all posts with pagination:
 
-bash
+
 curl "http://localhost:5000/api/posts/?page=1&per_page=10&sort_by=created_at&sort_order=desc"
 Using Postman/Insomnia
 Import the following collection:
@@ -357,10 +372,10 @@ json
 Option 1: Local Development
 bash
 python gui_app.py
-# Access at http://localhost:5000
+ Access at http://localhost:5000
 Option 2: Docker (Recommended for Production)
 dockerfile
-# Dockerfile
+ Dockerfile
 FROM python:3.9-slim
 
 WORKDIR /app
